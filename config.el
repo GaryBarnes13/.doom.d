@@ -31,6 +31,7 @@
 ;; change `org-directory'. It must be set before org loads!
   (setq org-directory "~/Documents/org/")
   (setq org-agenda-files "~/Documents/org/*.org")
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
@@ -69,12 +70,16 @@
                                   :deadline past)
                            (:name "Due soon"
                                   :deadline future)
-                           (:name "Big Outcomes"
-                                  :tag "bo")))
+                                  ))
   :config
   (org-super-agenda-mode)
 )
 
 (after! org
-(add-to-list 'org-modules 'org-habit t)
+  (setq org-agenda-skip-scheduled-if-done t
+        org-todo-keywords
+        '((sequence "TODO(t)" "INPROGRESS(i)" "WAITING(w)" "READING(r)"
+                    "|" "DONE(d)" "CANCELLED(c)")))
+  ;; this may or may not be working
+  (add-to-list 'org-modules 'org-habit t)
   )

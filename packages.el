@@ -50,3 +50,4 @@
 ;(unpin! t)
 (package! evil-tutor)
 (package! org-super-agenda)
+(package! org-fancy-priorities)
