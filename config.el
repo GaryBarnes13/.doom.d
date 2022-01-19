@@ -54,27 +54,29 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; set root folder for all projects
 (setq projectile-project-search-path '("~/dev/" ))
 
-(use-package! org-super-agenda
-  :after org-agenda
-  :init
-  (setq  org-super-agenda-groups '((:name "Today"
-                                  :time-grid t
-                                  :scheduled today)
-                           (:name "Due today"
-                                  :deadline today)
-                           (:name "Important"
-                                  :priority "A")
-                           (:name "Overdue"
-                                  :deadline past)
-                           (:name "Due soon"
-                                  :deadline future)
-                                  ))
-  :config
-  (org-super-agenda-mode)
-)
+;;(use-package! org-super-agenda
+;;  :after org-agenda
+;;  :init
+;;  (setq  org-super-agenda-groups '((:name "Today"
+;;                                  :time-grid t
+;;                                  :scheduled today)
+;;                           (:name "Due today"
+;;                                  :deadline today)
+;;                           (:name "Important"
+;;                                  :priority "#A")
+;;                           (:name "Overdue"
+;;                                  :deadline past)
+;;                           (:name "Due soon"
+;;                                  :deadline future)
+;;                                  ))
+;;  :config
+;;  (org-super-agenda-mode)
+;;)
 
+;; basic org options
 (after! org
   (setq org-agenda-skip-scheduled-if-done t
         org-todo-keywords
@@ -83,3 +85,17 @@
   ;; this may or may not be working
   (add-to-list 'org-modules 'org-habit t)
   )
+
+;; authinfo directory for forge (magit)
+(setq auth-sources '("~/.authinfo"))
+
+;; options for deft package
+(setq deft-directory "~/Documents/org"
+      deft-extensions '("org" "txt")
+      deft-recursive t
+      )
+
+(setq org-journal-date-prefix "#+TITLE: "
+      org-journal-time-prefix "* "
+      org-journal-date-format "%a, %m-%d-%Y"
+      org-journal-file-format "%m-%d-%Y.org")
